@@ -1,7 +1,7 @@
 {
   "module_id": "devin-hilly:baby-monitor",
   "visibility": "private",
-  "url": "https://github.com/Simberific/baby-monitor-vision",
+  "url": "https://github.com/viam-labs/baby-monitor-vision",
   "description": "Baby monitor awake detection module",
   "models": [
     {
