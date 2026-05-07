@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	AwakeClassifierModel = resource.NewModel("simone-kalmakis", "baby-monitor", "awake-classifier")
+	AwakeClassifierModel = resource.NewModel("devin-hilly", "baby-monitor", "awake-classifier")
 	errUnimplemented     = errors.New("unimplemented")
 )
 

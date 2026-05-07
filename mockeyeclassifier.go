@@ -14,7 +14,7 @@ import (
 	"go.viam.com/rdk/vision/viscapture"
 )
 
-var MockEyeClassifierModel = resource.NewModel("simone-kalmakis", "baby-monitor", "mock-eye-classifier")
+var MockEyeClassifierModel = resource.NewModel("devin-hilly", "baby-monitor", "mock-eye-classifier")
 
 func init() {
 	resource.RegisterService(vision.API, MockEyeClassifierModel,
