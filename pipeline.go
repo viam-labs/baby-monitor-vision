@@ -26,7 +26,7 @@ func runPipeline(
 		logger.Warnw("eye detector error", "error", detErr)
 	} else {
 		for _, det := range detections {
-			if !strings.EqualFold(det.Label(), "eyes") {
+			if !strings.EqualFold(det.Label(), "open-eyes") {
 				continue
 			}
 			score := float64(det.Score())
