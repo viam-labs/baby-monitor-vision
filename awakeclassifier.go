@@ -185,6 +185,10 @@ func (s *awakeClassifier) DoCommand(ctx context.Context, cmd map[string]interfac
 	}
 }
 
+func (s *awakeClassifier) Status(ctx context.Context) (map[string]interface{}, error) {
+	return s.Readings(ctx, nil)
+}
+
 func (s *awakeClassifier) Close(context.Context) error {
 	s.workers.Stop()
 	return nil

@@ -2,9 +2,9 @@ package babymonitor
 
 import (
 	"context"
-	"image"
 	"math/rand"
 
+	"go.viam.com/rdk/components/camera"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/services/vision"
@@ -45,7 +45,7 @@ func (m *mockEyeClassifier) Name() resource.Name {
 }
 
 // Classifications returns a random open/closed label with a random confidence in [0.5, 1.0].
-func (m *mockEyeClassifier) Classifications(_ context.Context, _ image.Image, _ int, _ map[string]interface{}) (classification.Classifications, error) {
+func (m *mockEyeClassifier) Classifications(_ context.Context, _ *camera.NamedImage, _ int, _ map[string]interface{}) (classification.Classifications, error) {
 	label := "closed"
 	if rand.Float64() > 0.5 {
 		label = "open"
@@ -56,14 +56,14 @@ func (m *mockEyeClassifier) Classifications(_ context.Context, _ image.Image, _ 
 }
 
 func (m *mockEyeClassifier) ClassificationsFromCamera(ctx context.Context, _ string, n int, extra map[string]interface{}) (classification.Classifications, error) {
-	return m.Classifications(ctx, nil, n, extra)
+	return m.Classifications(ctx, (*camera.NamedImage)(nil), n, extra)
 }
 
 func (m *mockEyeClassifier) DetectionsFromCamera(_ context.Context, _ string, _ map[string]interface{}) ([]objdet.Detection, error) {
 	return nil, errUnimplemented
 }
 
-func (m *mockEyeClassifier) Detections(_ context.Context, _ image.Image, _ map[string]interface{}) ([]objdet.Detection, error) {
+func (m *mockEyeClassifier) Detections(_ context.Context, _ *camera.NamedImage, _ map[string]interface{}) ([]objdet.Detection, error) {
 	return nil, errUnimplemented
 }
 
@@ -85,6 +85,10 @@ func (m *mockEyeClassifier) CaptureAllFromCamera(_ context.Context, _ string, _ 
 
 func (m *mockEyeClassifier) DoCommand(_ context.Context, _ map[string]interface{}) (map[string]interface{}, error) {
 	return nil, errUnimplemented
+}
+
+func (m *mockEyeClassifier) Status(ctx context.Context) (map[string]interface{}, error) {
+	return map[string]interface{}{}, nil
 }
 
 func (m *mockEyeClassifier) Close(context.Context) error {
